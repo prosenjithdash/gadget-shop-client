@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hocks/useAuth";
 import { useForm } from "react-hook-form";
 import GoogleLogin from "../components/login-registration/GoogleLogin";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Register = () => {
     // const auth = useContext(AuthContext) --> this work will we complete with hook
@@ -30,10 +32,29 @@ const Register = () => {
 
         const userData = { email, role, status, wishlist };
 
+        CreateUser(data.email, data.password)
+            .then(() => {
+                axios.post("http://localhost:4000/users", userData).then((res) => {
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Registration successful.",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
+                    }
+                })
+            
+        })
 
-        // CreateUser(data.email, data.password);
-        // navigate('/');
-        console.log(userData);
+        
+        
+        
+        
+     
+        // console.log(userData);
     }
 
     return (
