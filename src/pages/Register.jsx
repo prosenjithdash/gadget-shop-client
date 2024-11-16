@@ -23,8 +23,17 @@ const Register = () => {
     
     // onSubmit function
     const onSubmit = (data) => {
-        CreateUser(data.email, data.password);
-        navigate('/');
+        const email = data.email;
+        const role = data.role;
+        const status = role === "buyer" ? "approved" : "pending";
+        const wishlist = [];
+
+        const userData = { email, role, status, wishlist };
+
+
+        // CreateUser(data.email, data.password);
+        // navigate('/');
+        console.log(userData);
     }
 
     return (
