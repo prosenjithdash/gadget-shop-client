@@ -11,7 +11,7 @@ const DashboardLayout = () => {
             </div>
             
             {/* Outlet */}
-            <div className="col-span-10">
+            <div className="col-span-10 p-12">
                 <Outlet/>
             </div>
         </div>
